@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar, {NavButtonText, NavTitle} from 'react-native-nav'
-import {StyleSheet, View} from 'react-native'
+import NavBar, {NavButton, NavButtonText, NavTitle} from 'react-native-nav'
+import {Alert, StyleSheet, View} from 'react-native'
 
 export default class toolbar extends React.Component {
     render() {
@@ -12,7 +12,11 @@ export default class toolbar extends React.Component {
                         {"Delivery Organico"}
                     </NavTitle>
                     <View style={styles.prueba}>
-                        <NavButtonText>{"Ayuda"}</NavButtonText>
+                        <NavButton onPress={(this.onLogin.bind(this))}>
+                            <NavButtonText>
+                                {"Ayuda"}
+                            </NavButtonText>
+                        </NavButton>
                     </View>
                 </View>
 
@@ -21,6 +25,24 @@ export default class toolbar extends React.Component {
 
         )
     }
+
+    onLogin() {
+        Alert.alert(
+            'Ayuda',
+            'Proximamente',
+            [
+                {
+                    text: 'Aceptar',
+
+                },
+                {
+                    text: 'Cancelar',
+
+                }
+            ]
+        )
+    }
+
 }
 
 const styles = StyleSheet.create({
