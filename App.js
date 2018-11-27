@@ -5,9 +5,7 @@ import Profile from './components/Profile/Profile';
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Profile/>
-      </View>
+      <Profile/>
     );
   }
 }
