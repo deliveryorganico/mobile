@@ -1,18 +1,23 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Avatar } from 'react-native-material-ui';
+import { Toolbar } from 'react-native-material-ui';
 
 export default class App extends React.Component {
 	render() {
 		return(
 			<View>
-        <Avatar text="A" />
-
-        <Avatar icon="grade" />
-        <Avatar icon="person" iconColor="blue" />
-        <Avatar icon="history" iconSize={20} />
-        <Avatar icon="mic" size={75} />
-    	</View>
+        <Toolbar
+        leftElement="menu"
+        centerElement="Profile"
+        rightElement={{
+            menu: {
+                icon: "more-vert",
+                labels: ["item 1", "item 2"]
+            }
+        }}
+        onRightElementPress={ (label) => { console.log(label) }}
+      />
+ 			</View>
 		);
 	}
 }
