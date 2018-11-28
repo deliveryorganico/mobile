@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image } from 'react-native'
-import { Header, Card, ListItem, Button } from 'react-native-elements'
+import { StyleSheet, Text, View,Image} from 'react-native'
+import { Header, Card, ListItem, Button,SearchBar } from 'react-native-elements'
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 export class HomeScreen extends React.Component {
@@ -14,6 +14,11 @@ export class HomeScreen extends React.Component {
                     centerComponent={{ text: 'HOME', style: { color: '#fff' } }}
                     outerContainerStyles={{ backgroundColor: '#FFC107' }}
                 />
+                <SearchBar
+                lightTheme
+                icon={{ type: 'font-awesome', name: 'search' }}
+                placeholder='Type Here...' 
+                />
                 <Card
                     title='Banana'
                     image={require('../images/banana.jpg')}>
@@ -26,6 +31,7 @@ export class HomeScreen extends React.Component {
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                     title='COMPRAR' />
                 </Card>
+                
             </React.Fragment>
             );
         }
