@@ -2,23 +2,35 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Header } from 'react-native-elements'
 import { ListItem } from 'react-native-elements'
-
+//import { DrawerNavigator } from 'react-navigation';
+//
+//
+////const DrawerBack = DrawerNavigator(
+////    {
+////
+////    },
+// //   {
+//        
+// //   }
+//
+////);
+//
 const questions = [
     {
-      title: 'User',
+      title: 'Federico Vargas',
       icon: 'person'
     },
     {
-      title: 'Manage payment methods',
-      icon: 'payment'
+      title: 'fedevargas110@gmail.com',
+      icon: 'email'
     },
     {
-        title: 'Manage address',
+        title: 'Dirrecion',
         icon: 'place'
     },
     {
-        title: 'Contact Us',
-        icon: 'inbox'
+        title: 'Telefono',
+        icon: 'call'
     },
     {
         title: 'Add',
@@ -33,7 +45,7 @@ export default class App extends React.Component {
                 <Header
                     leftComponent={{icon: 'face', color: '#fff' } }
                     centerComponent={{ text: 'PROFILE', style: { color: '#fff' } }}
-                    rightComponent={{icon: 'more-vert', color:'#fff'}}
+//                    rightComponent={{icon: 'more-vert', color:'#fff'}}
                     outerContainerStyles={{ backgroundColor: '#FFC107' }}
                 />
                 {questions.map( (questions, index) =>(
@@ -46,15 +58,3 @@ export default class App extends React.Component {
 		);
 	}
 }
-//<ListItem 
-//                    title='User'
-//                    leftIcon={{name:'person'}}/>
-//                <ListItem
-//                    title= 'Manage payment methods'
-//                    leftIcon={{name:'payment'}} />
-//                <ListItem
-//                    title='Manage address'
-//                    leftIcon={{name:'place'}}/>
-//                <ListItem
-//                title= 'Contact Us'
-//                leftIcon={{name:'inbox'}} />
