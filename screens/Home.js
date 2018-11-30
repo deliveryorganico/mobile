@@ -47,15 +47,30 @@ export class HomeScreen extends React.Component {
 
                 <View style={{marginTop: 22}}>
                     <View>
-                        <Text>Hello World!</Text>
-
-                        <TouchableHighlight
-                         onPress={() => {
-                        this.setModalVisible(!this.state.modalVisible);
-                        }}>
-                     <Text>Hide Modal</Text>
-                </TouchableHighlight>
+                        <FormLabel>Nombre del Producto</FormLabel>
+                        <FormInput/>
+                        <FormLabel>Descripcion</FormLabel>
+                        <FormInput/>
+                        <FormLabel>Precio</FormLabel>
+                        <FormInput/>
                     </View>
+                    <Button
+                        small
+                        rounded
+                        style={{marginTop:20}}
+                        icon={{name: 'check'}}
+                        title='Publicar'
+                        backgroundColor='green' 
+                        />
+                    <Button
+                    small
+                    rounded
+                    style={{marginTop:10}}
+                    icon={{name: 'close'}}
+                    title='CANCELAR' 
+                    onPress = {() => { this.setModalVisible(!this.state.modalVisible)}}
+                    backgroundColor="red"
+                    />
                  </View>
             </Modal>
             </React.Fragment>
