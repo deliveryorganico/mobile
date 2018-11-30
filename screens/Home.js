@@ -67,7 +67,7 @@ export class HomeScreen extends React.Component {
                     rounded
                     style={{marginTop:10}}
                     icon={{name: 'close'}}
-                    title='CANCELAR' 
+                    title='Cancelar' 
                     onPress = {() => { this.setModalVisible(!this.state.modalVisible)}}
                     backgroundColor="red"
                     />
