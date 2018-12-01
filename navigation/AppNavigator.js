@@ -1,8 +1,10 @@
 import React from 'react';
 import { StackNavigator,TabNavigator,createAppContainer,createBottomTabNavigator } from 'react-navigation'
 import { Icon } from 'react-native-elements'
-import { HomeScreen } from './Home'
-import ProfileScreen from './Profile'
+import { HomeScreen } from '../screens/Home/Home'
+import ProfileScreen from '../screens/Home/Profile'
+import { Login } from '../screens/Login/Login'
+
 
 export const Tabs = createBottomTabNavigator({
   Home:{
