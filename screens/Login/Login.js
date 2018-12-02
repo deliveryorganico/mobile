@@ -1,10 +1,26 @@
 import React from "react";
-import {StyleSheet,ImageBackground, Text, TextInput, View} from "react-native";
+import {ImageBackground, StyleSheet, View, Button} from "react-native";
 import {Card} from 'react-native-elements'
-import {Button} from 'react-native-material-ui';
+import t from 'tcomb-form-native';
+
 
 export default class Login extends React.Component {
+
+    handleSubmit = () => {
+        const value = this._form.getValue(); // use that ref to get the form value
+        console.log('value: ', value);
+        this.props.navigation.navigate('Home')
+    }
+
     render() {
+        const {handleSubmit} = this.props;
+
+        const Form = t.form.Form;
+
+        const User = t.struct({
+            username: t.String,
+            password: t.String
+        });
 
         return (
             <React.Fragment>
@@ -13,29 +29,17 @@ export default class Login extends React.Component {
                     source={require("../../images/fruta.jpg")}
                 >
                     <View style={styles.container}>
-                            <Card>
-                                <View>
-                                    <Text style={styles.texto}>Ingrese su nombre de usuario</Text>
-                                    <TextInput
-                                        placeholder='Nombre de Usuario'
-                                        style={styles.input}
-                                    />
-                                    <Text style={styles.texto2}>Ingrese su contraseña</Text>
-                                    <TextInput
-                                        placeholder='Contraseña'
-                                        style={styles.input}
-                                    />
-                                    <View style={styles.btn}>
-                                        <Button onPress={() => this.props.navigation.navigate('Home')} raised primary
-                                                text="Login"/>
-                                        <View style={styles.btn2}>
-                                            <Button onPress={() => this.props.navigation.navigate('Home')} raised
-                                                    primary
-                                                    text="Registrarse"/>
-                                        </View>
-                                    </View>
-                                </View>
-                            </Card>
+                        <Card>
+                            <View>
+                                <Form
+                                    ref={c => this._form = c}
+                                    type={User}/>
+                                <Button
+                                    title="Sign Up!"
+                                    onPress={this.handleSubmit}
+                                />
+                            </View>
+                        </Card>
 
                     </View>
                 </ImageBackground>
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 170,
         textAlign: "center",
-        marginLeft: -33,
+        marginLeft: -30
     },
     logo: {
         width: 680,
