@@ -1,7 +1,8 @@
 import React from 'react'
 import {Text, View} from 'react-native'
-import {Button, Card, Header, SearchBar} from 'react-native-elements'
+import {Button, Card, Header, SearchBar,List} from 'react-native-elements'
 import axios from 'axios';
+import ProductList from '../ProductList'
 
 export class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -14,22 +15,6 @@ export class HomeScreen extends React.Component {
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
     }
-
-    state = {
-        products: []
-    }
-
-    async componentDidMount() {
-        this.fetchData();
-    }
-
-    fetchData = () => {
-        axios.get(`http://192.168.0.172:8000/rest/product/1/`)
-            .then(res => {
-                this.setState({products: res.data});
-            })
-    }
-
     render() {
         return (
             <React.Fragment>
@@ -47,31 +32,7 @@ export class HomeScreen extends React.Component {
                     icon={{type: 'font-awesome', name: 'search'}}
                     placeholder='Type Here...'
                 />
-                <Card
-                    title={this.state.products.title}
-                    image={{uri: this.state.products.photo}}>
-                    <View style={{
-                        alignItems: 'center',
-                        flexDirection: "row",
-                        padding: 10
-                    }}>
-                        <Text style={{marginBottom: 10, fontSize:17}}>
-                            {this.state.products.description}
-                        </Text>
-                        <View style={{marginLeft: 200}}>
-                            <Text style={{marginBottom: 10, fontSize:17}}>
-                                {this.state.products.price}
-                            </Text>
-                        </View>
-                    </View>
-                    <Button
-                        icon={{name: 'shopping-cart'}}
-                        backgroundColor='#03A9F4'
-                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                        onPress={() => this.props.navigation.navigate('Login')}
-                        title='COMPRAR'/>
-                </Card>
-
+                <ProductList/>
             </React.Fragment>
         );
     }

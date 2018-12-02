@@ -1,6 +1,7 @@
 import React from 'react'
 import {View} from 'react-native'
 import {Button, FormInput, FormLabel,} from 'react-native-elements'
+import axios from 'axios'
 
 export default class Addproduct extends React.Component {
     render() {
