@@ -1,6 +1,6 @@
 import React from 'react'
 import Axios from 'axios';
-import { View,Text } from 'react-native';
+import { View, ScrollView,Text } from 'react-native';
 import { Card, Button } from 'react-native-elements'
 
 export default class ProductList extends React.Component{
@@ -15,7 +15,7 @@ export default class ProductList extends React.Component{
         });
     }
     render() {
-            return(<View>
+            return(<ScrollView>
                 {this.state.products.map(product =>
                 <Card
                 title={product.title}
@@ -42,7 +42,7 @@ export default class ProductList extends React.Component{
                     title='COMPRAR'/>
             </Card>
                 )}
-                </View>
+                </ScrollView>
             )
     }
 
