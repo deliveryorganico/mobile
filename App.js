@@ -1,11 +1,8 @@
-import React from 'react';
-import Profile from './components/Profile/Profile';
-
+import React from "react";
+import Nav from './navigation/MainNavigation'
 
 export default class App extends React.Component {
   render() {
-    return (
-      <Profile/>
-      )
-    }
+    return <Nav />;
   }
+}
