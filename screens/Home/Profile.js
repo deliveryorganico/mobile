@@ -2,19 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Header } from 'react-native-elements'
 import { ListItem } from 'react-native-elements'
-//import { DrawerNavigator } from 'react-navigation';
-//
-//
-////const DrawerBack = DrawerNavigator(
-////    {
-////
-////    },
-// //   {
-//        
-// //   }
-//
-////);
-//
+
 const questions = [
     {
       title: 'Federico Vargas',
