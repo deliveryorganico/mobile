@@ -12,7 +12,9 @@ export default class ProductList extends React.Component{
         Axios.get(`http://192.168.0.106:8000/rest/product`).then(res =>  {
             console.log(res);
             this.setState({ products: res.data })
-        });
+        }).catch(error => {
+            console.log(error);
+        })
     }
     render() {
             return(<ScrollView>

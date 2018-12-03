@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { Header } from 'react-native-elements'
-import { ListItem } from 'react-native-elements'
+import axios from 'axios';
+import { Image, Text, View } from 'react-native';
+import { Header, ListItem } from 'react-native-elements';
 
 const questions = [
     {
@@ -19,29 +19,74 @@ const questions = [
     {
         title: 'Telefono',
         icon: 'call'
-    },
-    {
-        title: 'Add',
-        icon: 'add'
     }
-  ]
+]
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {
+                username: null,
+                name: null,
+                mail: null,
+                phone: null,
+                address: null,
+                st_number: null,
+                city: null,
+                locality: null,
+                floor: null,
+                zip_code: null,
+                photo: null
+            },
+            icons: {
+                
+            }
+        };
+    }
+    componentDidMount() {
+        axios
+            .get('http://192.168.0.4:8000/rest/profile/8/')
+            .then(response => {
+                console.log(response.data);
+                this.setState({
+                    user: {
+                        username: response.data.username,
+                        name: response.data.first_name + ' ' + response.data.last_name,
+                        mail: response.data.mail,
+                        phone: response.data.phone,
+                        address: response.data.address,
+                        st_number: response.data.st_number,
+                        city: response.data.city,
+                        locality: response.data.locality,
+                        zip_code: response.data.zip_code,
+                        floor: response.data.floor,
+                        photo: response.data.photo
+                    } 
+                })           
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 	render() {
 		return(
 			<View style={{flex: 1, backgroundColor: '#ddd'}}>
                 <Header
-                    leftComponent={{icon: 'face', color: '#fff' } }
                     centerComponent={{ text: 'PROFILE', style: { color: '#fff' } }}
 //                    rightComponent={{icon: 'more-vert', color:'#fff'}}
                     outerContainerStyles={{ backgroundColor: '#FFC107' }}
                 />
-                {questions.map( (questions, index) =>(
+                <ListItem 
+                    key="8"
+                    leftIcon={{ name: 'person' }}
+                    title={ this.state.user.name }/>
+                {/* {questions.map( (questions, index) =>(
                     <ListItem 
                     key={index} 
                     leftIcon={{name: questions.icon}}
                     title={questions.title}/>
-                ) )}
+                ) )} */}
             </View>
 		);
 	}
