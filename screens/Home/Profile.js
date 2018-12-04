@@ -40,7 +40,17 @@ export default class App extends React.Component {
                 photo: null
             },
             icons: {
-                
+                username: 'person',
+                name: 'perm_identity',
+                mail: 'email',
+                phone: 'call',
+                address: 'domain',
+                st_number: 'stars',
+                city: 'place',
+                locality: 'explore',
+                floor: 'stars',
+                zip_code: 'domain',
+                photo: '',
             }
         };
     }
@@ -79,8 +89,9 @@ export default class App extends React.Component {
                 />
                 <ListItem 
                     key="8"
-                    leftIcon={{ name: 'person' }}
-                    title={ this.state.user.name }/>
+                    leftIcon={{ name: this.state.icons.username }}
+                    title={ this.state.user.username }/>
+                
                 {/* {questions.map( (questions, index) =>(
                     <ListItem 
                     key={index} 
