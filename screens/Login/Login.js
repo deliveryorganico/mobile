@@ -1,5 +1,5 @@
 import React from "react";
-import {ImageBackground, StyleSheet, View, Button} from "react-native";
+import {Button, ImageBackground, StyleSheet, View} from "react-native";
 import {Card} from 'react-native-elements'
 import t from 'tcomb-form-native';
 
