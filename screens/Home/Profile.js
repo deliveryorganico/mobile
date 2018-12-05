@@ -1,26 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, View, StyleSheet, Button, Alert } from 'react-native';
 import { Header, ListItem } from 'react-native-elements';
-
-const questions = [
-    {
-      title: 'Federico Vargas',
-      icon: 'person'
-    },
-    {
-      title: 'fedevargas110@gmail.com',
-      icon: 'email'
-    },
-    {
-        title: 'Dirrecion',
-        icon: 'place'
-    },
-    {
-        title: 'Telefono',
-        icon: 'call'
-    }
-]
 
 export default class App extends React.Component {
     constructor(props) {
@@ -29,7 +10,7 @@ export default class App extends React.Component {
             user: {
                 username: null,
                 name: null,
-                mail: null,
+                email: null,
                 phone: null,
                 address: null,
                 st_number: null,
@@ -42,7 +23,7 @@ export default class App extends React.Component {
             icons: {
                 username: 'person',
                 name: 'person',
-                mail: 'email',
+                email: 'email',
                 phone: 'call',
                 address: 'domain',
                 st_number: 'stars',
@@ -63,7 +44,7 @@ export default class App extends React.Component {
                     user: {
                         username: response.data.username,
                         name: response.data.first_name + ' ' + response.data.last_name,
-                        mail: response.data.mail,
+                        email: response.data.email,
                         phone: response.data.phone,
                         address: response.data.address,
                         st_number: response.data.st_number,
@@ -79,6 +60,13 @@ export default class App extends React.Component {
                 console.log(error);
             })
     }
+
+    onButtonPress(){
+        this.props.navigator.push({
+            id: 'Direccion'
+        });
+    }
+
 	render() {
 		return(
 			<View style={{flex: 1, backgroundColor: '#ddd'}}>
@@ -96,36 +84,13 @@ export default class App extends React.Component {
                     title={ this.state.user.name }
                 />
                 <ListItem
-                    leftIcon={{ name: this.state.icons.mail }}
-                    title={ this.state.user.mail }
-                />
-                <ListItem
-                    leftIcon={{ name: this.state.icons.phone }}
-                    title={ this.state.user.phone }
+                    leftIcon={{ name: this.state.icons.email }}
+                    title={ this.state.user.email } 
                 />
                 <ListItem
                     leftIcon={{ name: this.state.icons.address }}
-                    title={ this.state.user.address }
-                />
-                <ListItem
-                    leftIcon={{ name: this.state.icons.st_number }}
-                    title={ this.state.user.st_number }
-                />
-                <ListItem
-                    leftIcon={{ name: this.state.icons.city }}
-                    title={ this.state.user.city }
-                />
-                <ListItem
-                    leftIcon={{ name: this.state.icons.locality }}
-                    title={ this.state.user.locality }
-                />
-                <ListItem
-                    leftIcon={{ name: this.state.icons.zip_code }}
-                    title={ this.state.user.zip_code }
-                />
-                <ListItem
-                    leftIcon={{ name: this.state.icons.floor }}
-                    title={ this.state.user.floor }
+                    title= 'Direccion'
+                    onPress={this.onButtonPress.bind(this)}
                 />
             </View>
 		);
