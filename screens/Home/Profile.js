@@ -41,7 +41,7 @@ export default class App extends React.Component {
             },
             icons: {
                 username: 'person',
-                name: 'perm_identity',
+                name: 'person',
                 mail: 'email',
                 phone: 'call',
                 address: 'domain',
@@ -56,7 +56,7 @@ export default class App extends React.Component {
     }
     componentDidMount() {
         axios
-            .get('http://192.168.0.4:8000/rest/profile/8/')
+            .get('http://192.168.1.8:8000/rest/profile/2/')
             .then(response => {
                 console.log(response.data);
                 this.setState({
@@ -88,16 +88,45 @@ export default class App extends React.Component {
                     outerContainerStyles={{ backgroundColor: '#FFC107' }}
                 />
                 <ListItem 
-                    key="8"
+                    key="2"
                     leftIcon={{ name: this.state.icons.username }}
                     title={ this.state.user.username }/>
-                
-                {/* {questions.map( (questions, index) =>(
-                    <ListItem 
-                    key={index} 
-                    leftIcon={{name: questions.icon}}
-                    title={questions.title}/>
-                ) )} */}
+                <ListItem
+                    leftIcon={{ name: this.state.icons.name }}
+                    title={ this.state.user.name }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.mail }}
+                    title={ this.state.user.mail }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.phone }}
+                    title={ this.state.user.phone }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.address }}
+                    title={ this.state.user.address }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.st_number }}
+                    title={ this.state.user.st_number }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.city }}
+                    title={ this.state.user.city }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.locality }}
+                    title={ this.state.user.locality }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.zip_code }}
+                    title={ this.state.user.zip_code }
+                />
+                <ListItem
+                    leftIcon={{ name: this.state.icons.floor }}
+                    title={ this.state.user.floor }
+                />
             </View>
 		);
 	}
