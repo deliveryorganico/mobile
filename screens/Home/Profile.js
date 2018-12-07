@@ -1,62 +1,99 @@
-import React from 'react'
-import {StyleSheet,View} from "react-native";
-import {Header, List, ListItem} from 'react-native-elements'
-import {Button} from 'react-native-material-ui';
+import React from 'react';
+import {AsyncStorage, View} from 'react-native';
+import {Header, ListItem} from 'react-native-elements';
+
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: false,
+            error: '',
+            username_tmp: null,
+            name_tmp: null,
+            email_tmp: null,
+            icons: {
+                username: 'person',
+                name: 'person',
+                email: 'email',
+                phone: 'call',
+                address: 'domain',
+                st_number: 'stars',
+                city: 'place',
+                locality: 'explore',
+                floor: 'stars',
+                zip_code: 'domain',
+                photo: '',
+            }
+        };
+
+        AsyncStorage.getItem('username', function (errs, result) {
+            if (!errs) {
+                if (result !== null) {
+                    username = result;
+                }
+            }
+        })
+            .then((value) => this.setState({
+                username: username_tmp
+            }));
+
+        AsyncStorage.getItem('first_name', function (errs, result) {
+            if (!errs) {
+                if (result !== null) {
+                    first_name = result;
+                }
+            }
+        })
+            .then((value) => this.setState({
+                first_name: name_tmp
+            }));
+
+        AsyncStorage.getItem('email', function (errs, result) {
+            if (!errs) {
+                if (result !== null) {
+                    email = result;
+                }
+            }
+        })
+            .then((value) => this.setState({
+                email: email_tmp
+            }));
+
+    };
 
 
-const list = [
-    {
-        title: 'User',
-        icon: 'person'
-    },
-    {
-        title: 'Manage payment methods',
-        icon: 'payment'
-    },
-    {
-        title: 'Manage address',
-        icon: 'place'
-    },
-    {
-        title: 'Contact Us',
-        icon: 'inbox'
+    onButtonPress() {
+        this.props.navigation.navigate('Direccion')
     }
-]
-export default class ProfileScreen extends React.Component {
+
     render() {
+        const {loading, username, first_name, email, error} = this.state;
         return (
-            <React.Fragment>
+            <View style={{flex: 1, backgroundColor: '#ddd'}}>
                 <Header
                     centerComponent={{text: 'PROFILE', style: {color: '#fff'}}}
+                    //                    rightComponent={{icon: 'more-vert', color:'#fff'}}
                     outerContainerStyles={{backgroundColor: '#FFC107'}}
                 />
-                <List>
-                    {
-                        list.map((item) => (
-                            <ListItem
-                                key={item.title}
-                                title={item.title}
-                                leftIcon={{name: item.icon}}
-                            />
-                        ))
-                    }
-                </List>
-                <View style={styles.btn}>
-                <Button onPress={() => this.props.navigation.navigate('Login')} raised
-                        primary
-                        text="Logout"/>
-                </View>
-            </React.Fragment>
-        )
+                <ListItem
+                    key="2"
+                    leftIcon={{name: this.state.icons.username}}
+                    title={username}/>
+
+                <ListItem
+                    leftIcon={{name: this.state.icons.name}}
+                    title={first_name}
+                />
+                <ListItem
+                    leftIcon={{name: this.state.icons.email}}
+                    title={email}
+                />
+                <ListItem
+                    leftIcon={{name: this.state.icons.address}}
+                    title='Direccion'
+                    onPress={this.onButtonPress.bind(this)}
+                />
+            </View>
+        );
     }
 }
-
-const styles = StyleSheet.create({
-    btn : {
-        marginTop: 1,
-        marginLeft: 260,
-        alignItems: 'center',
-        flexDirection: "row",
-        padding: 10
-    }
-});

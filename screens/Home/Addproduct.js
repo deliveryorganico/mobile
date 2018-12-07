@@ -133,7 +133,7 @@ export default class Addproduct extends React.Component {
                 <Button
                     small
                     rounded
-                    style={{marginTop: 230}}
+                    style={{marginTop: 180}}
                     icon={{name: 'check'}}
                     title='Publicar'
                     backgroundColor='green'
