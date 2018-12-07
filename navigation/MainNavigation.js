@@ -2,16 +2,18 @@ import Tabs from './AppNavigator';
 import Product from '../screens/Home/Addproduct'
 import {createAppContainer, createStackNavigator} from "react-navigation";
 import React from "react";
-import Pl from '../screens/Home/ProductList'
+import Profile from '../screens/Home/Profile'
+import Direccion from '../screens/Home/Direccion'
 
 const RootStack = createStackNavigator(
   {
     Home: Tabs,
     Product: Product,
-    Pl:Pl,
+    Profile: Profile,
+    Direccion: Direccion,
   },
     {
-  headerMode: 'Login'
+  headerMode: 'Home'
     }
 );
 
