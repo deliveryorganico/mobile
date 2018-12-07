@@ -69,7 +69,7 @@ export default class Addproduct extends React.Component {
             this.state.price = cambiar;
             axios({
                 method: 'post',
-                url: 'http://192.168.0.104:8000/rest/product/',
+                url: 'http://192.168.43.244:8000/rest/product/',
                 data: {
                     title: this.state.title,
                     description: this.state.description,
@@ -96,7 +96,7 @@ export default class Addproduct extends React.Component {
     ;
 
     componentDidMount() {
-        Axios.get(`http://192.168.0.104:8000/rest/branch/`).then(res => {
+        Axios.get(`http://192.168.43.244:8000/rest/branch/`).then(res => {
             this.setState({branches: res.data})
         });
     }

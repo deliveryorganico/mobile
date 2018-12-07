@@ -23,7 +23,7 @@ class Login extends Component {
         this.setState({error: '', loading: false});
 
         // NOTE Post to HTTPS only in production
-        axios.post("http://192.168.0.171:8000/auth/obtain_token/", {
+        axios.post("http://192.168.43.244:8000/auth/obtain_token/", {
             username: username,
             password: password
         })

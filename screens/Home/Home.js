@@ -26,11 +26,6 @@ export class HomeScreen extends React.Component {
                         }
                     }}
                 />
-                <SearchBar
-                    lightTheme
-                    icon={{type: 'font-awesome', name: 'search'}}
-                    placeholder='Type Here...'
-                />
                 <ProductList/>
             </React.Fragment>
         );

@@ -1,24 +1,39 @@
 import React from 'react'
 import Axios from 'axios';
 import {ScrollView, Text, View} from 'react-native';
-import {Button, Card, Icon,Badge} from 'react-native-elements'
+import {Button, Card, Icon,Badge, SearchBar} from 'react-native-elements'
 
 export default class ProductList extends React.Component {
     state = {
-        products: []
+        products: [],
+        filter: ''
     }
 
     componentDidMount() {
-        Axios.get(`http://192.168.0.104:8000/rest/product/`).then(res => {
+        Axios.get(`http://192.168.43.244:8000/rest/product/`).then(res => {
             this.setState({products: res.data})
         });
     }
-   
+    handle_search(e) {
+        console.log(e)
+        const value = e;
+        this.setState({ filter: value });
+    };
     render() {
 
-        return (<ScrollView>
-                {this.state.products.map(product =>
-                
+        return (
+    <View>
+        <View>
+            <SearchBar
+            lightTheme
+            onChangeText={ text => { this.handle_search(text) }}
+            icon={{ type: 'font-awesome', name: 'search'}}
+            placeholder='Type Here...'
+            autoCorrect = {false}
+            />
+        </View>
+        <ScrollView>
+                {this.state.products.filter(({ title }) => title.match(new RegExp(this.state.filter))).map(product =>
                     <Card key={product.id}
                           title={product.title}
                           image={{uri: product.photo}}
@@ -47,6 +62,7 @@ export default class ProductList extends React.Component {
                     </Card>
                 )}
             </ScrollView>
+        </View>
         )
     }
 
