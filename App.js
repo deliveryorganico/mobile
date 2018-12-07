@@ -1,7 +1,7 @@
 import React from 'react';
-import {Loading} from './screens/LoginNew/common/Loading';
-import Auth from './screens/LoginNew/Auth';
-import LoggedIn from './screens/LoginNew/LoggedIn';
+import {Loading} from './screens/Login/common/Loading';
+import Auth from './screens/Login/Auth';
+import LoggedIn from './screens/Login/LoggedIn';
 import deviceStorage from './services/deviceStorage';
 import Home from './screens/Home/Home'
 

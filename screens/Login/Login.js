@@ -1,90 +1,109 @@
-import React from "react";
-import {Button, ImageBackground, StyleSheet, View} from "react-native";
-import {Card} from 'react-native-elements'
-import t from 'tcomb-form-native';
+import React, {Component, Fragment} from 'react';
+import {Text, View} from 'react-native';
+import {Button, Input, TextLink} from './common';
+import axios from 'axios';
+import deviceStorage from '../../services/deviceStorage';
 
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            error: '',
+            loading: false
+        };
+        this.loginUser = this.loginUser.bind(this);
+        // this.onLoginFail = this.onLoginFail.bind(this);
+    }
 
-export default class Login extends React.Component {
+    loginUser() {
+        const {username, password} = this.state;
 
-    handleSubmit = () => {
-        const value = this._form.getValue(); // use that ref to get the form value
-        console.log('value: ', value);
-        this.props.navigation.navigate('Home')
+        this.setState({error: '', loading: false});
+
+        // NOTE Post to HTTPS only in production
+        axios.post("http://192.168.0.171:8000/auth/obtain_token/", {
+            username: username,
+            password: password
+        })
+            .then((response) => {
+                console.log(response.data.user.username)
+                deviceStorage.saveItem("id_token", response.data.token);
+                deviceStorage.saveItem("username", response.data.user.username);
+                this.props.newJWT(response.data);
+            })
+            .catch((error) => {
+                console.log('error', error.response);
+                this.onLoginFail();
+            });
+    }
+
+    onLoginFail() {
+        this.setState({
+            error: 'Error en el login!!!!!!!',
+            loading: false
+        });
     }
 
     render() {
-        const {handleSubmit} = this.props;
-
-        const Form = t.form.Form;
-
-        const User = t.struct({
-            username: t.String,
-            password: t.String
-        });
+        const {username, password, error, loading} = this.state;
+        const {form, section, errorTextStyle} = styles;
 
         return (
-            <React.Fragment>
-                <ImageBackground
-                    style={styles.logo}
-                    source={require("../../images/fruta.jpg")}
-                >
-                    <View style={styles.container}>
-                        <Card>
-                            <View>
-                                <Form
-                                    ref={c => this._form = c}
-                                    type={User}/>
-                                <Button
-                                    title="Sign Up!"
-                                    onPress={this.handleSubmit}
-                                />
-                            </View>
-                        </Card>
-
+            <Fragment>
+                <View style={form}>
+                    <View style={section}>
+                        <Input
+                            placeholder="pepe"
+                            label="Username"
+                            value={username}
+                            onChangeText={username => this.setState({username})}
+                        />
                     </View>
-                </ImageBackground>
 
-            </React.Fragment>
+                    <View style={section}>
+                        <Input
+                            secureTextEntry
+                            placeholder="password"
+                            label="Password"
+                            value={password}
+                            onChangeText={password => this.setState({password})}
+                        />
+                    </View>
+
+                    <Text style={errorTextStyle}>
+                        {error}
+                    </Text>
+                    <Button onPress={this.loginUser}>
+                        Login
+                    </Button>
+                </View>
+                <TextLink onPress={this.props.authSwitch}>
+                    Registrate! brou
+                </TextLink>
+            </Fragment>
         );
     }
 }
 
-const styles = StyleSheet.create({
-
-    input: {
-        height: 40,
-        backgroundColor: '#9E9E9E',
-        marginBottom: 20,
-        color: 'black',
-        paddingHorizontal: 10
+const styles = {
+    form: {
+        width: '100%',
+        borderTopWidth: 1,
+        borderColor: '#ddd',
     },
-    texto: {
-        marginBottom: 5,
-        marginTop: 5,
-        marginLeft: 68,
-        fontSize: 20,
-        color: 'black'
+    section: {
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        backgroundColor: '#fff',
+        borderColor: '#ddd',
     },
-    texto2: {
-        marginBottom: 5,
-        marginLeft: 90,
-        fontSize: 20
-    },
-    btn: {
-        alignItems: 'center',
-        flexDirection: "row",
-        padding: 10
-    },
-    btn2: {
-        marginLeft: 10
-    },
-    container: {
-        marginTop: 170,
-        textAlign: "center",
-        marginLeft: -30
-    },
-    logo: {
-        width: 680,
-        height: 680
+    errorTextStyle: {
+        alignSelf: 'center',
+        fontSize: 18,
+        color: 'red'
     }
-});
+};
+
+export {Login};
