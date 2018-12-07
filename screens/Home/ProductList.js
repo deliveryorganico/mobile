@@ -1,7 +1,7 @@
 import React from 'react'
 import Axios from 'axios';
 import {ScrollView, Text, View} from 'react-native';
-import {Button, Card} from 'react-native-elements'
+import {Button, Card, Icon,Badge} from 'react-native-elements'
 
 export default class ProductList extends React.Component {
     state = {
@@ -9,18 +9,20 @@ export default class ProductList extends React.Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://192.168.0.172:8000/rest/product/`).then(res => {
+        Axios.get(`http://192.168.0.106:8000/rest/product/`).then(res => {
             this.setState({products: res.data})
         });
     }
-
+   
     render() {
 
         return (<ScrollView>
                 {this.state.products.map(product =>
+                
                     <Card key={product.id}
                           title={product.title}
-                          image={{uri: product.photo}}>
+                          image={{uri: product.photo}}
+                          >
                         <View style={{
                             alignItems: 'center',
                             flexDirection: "row",
@@ -30,9 +32,10 @@ export default class ProductList extends React.Component {
                                 {product.description}
                             </Text>
                             <View style={{marginLeft: 200}}>
-                                <Text style={{marginBottom: 10, fontSize: 17}}>
-                                    {product.price}
-                                </Text>
+                                <Badge
+                                    value={'$'+product.price}
+                                    textStyle={{ color: 'orange' }}
+                                />
                             </View>
                         </View>
 

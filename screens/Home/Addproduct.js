@@ -1,9 +1,9 @@
 import React from 'react'
-import {Alert, Picker, View} from 'react-native'
+import {Alert, Picker, View, Image} from 'react-native'
 import {Button, FormInput, FormLabel,} from 'react-native-elements'
 import axios from 'axios'
 import Axios from "axios/index";
-
+import ImagePicker from "react-native-image-picker";
 const options = {
     title: 'mis fotos',
     takePhotoButtonTitle: 'Camara',
@@ -20,7 +20,7 @@ export default class Addproduct extends React.Component {
         branch: null,
         branches: []
     };
-
+        
     post = () => {
 
         if (this.state.title == '') {
@@ -96,13 +96,13 @@ export default class Addproduct extends React.Component {
     ;
 
     componentDidMount() {
-        Axios.get(`http://192.168.0.172:8000/rest/branch/`).then(res => {
+        Axios.get(`http://192.168.0.106:8000/rest/branch/`).then(res => {
             this.setState({branches: res.data})
         });
     }
-
-
     render() {
+
+
         return (
             <View style={{marginTop: 22}}>
 
@@ -154,7 +154,9 @@ export default class Addproduct extends React.Component {
                 />
             </View>
         )
+        
     }
+    
 }
 
 
