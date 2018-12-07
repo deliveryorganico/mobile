@@ -10,8 +10,11 @@ export default class App extends React.Component {
             error: '',
             phone_tmp: null,
             address_tmp: null,
+            st_number_tmp: null,
             city_tmp: null,
             locality_tmp: null,
+            floor_tmp: null,
+            zip_code_tmp: null,
             icons: {
                 phone: 'call',
                 address: 'domain',
@@ -46,6 +49,17 @@ export default class App extends React.Component {
                 address: address_tmp
             }));
 
+        AsyncStorage.getItem('st_number', function (errs, result) {
+            if (!errs) {
+                if (result !== null) {
+                    st_number = result;
+                }
+            }
+        })
+            .then((value) => this.setState({
+                st_number: st_number_tmp
+            }));
+
         AsyncStorage.getItem('city', function (errs, result) {
             if (!errs) {
                 if (result !== null) {
@@ -65,6 +79,26 @@ export default class App extends React.Component {
         })
             .then((value) => this.setState({
                 locality: locality_tmp
+            }));
+        AsyncStorage.getItem('floor', function (errs, result) {
+            if (!errs) {
+                if (result !== null) {
+                    floor = result;
+                }
+            }
+        })
+            .then((value) => this.setState({
+                floor: floor_tmp
+            }));
+        AsyncStorage.getItem('zip_code', function (errs, result) {
+            if (!errs) {
+                if (result !== null) {
+                    zip_code = result;
+                }
+            }
+        })
+            .then((value) => this.setState({
+                zip_code: zip_code_tmp
             }));
 
     }

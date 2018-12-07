@@ -34,11 +34,11 @@ class Login extends Component {
                 deviceStorage.saveItem('email', response.data.user.email);
                 deviceStorage.saveItem('phone', response.data.user.phone);
                 deviceStorage.saveItem('address', response.data.user.address);
-                deviceStorage.saveItem('st_number', response.data.user.st_number);
+                deviceStorage.saveItem('st_number', response.data.user.st_number+'');
                 deviceStorage.saveItem('city', response.data.user.city);
                 deviceStorage.saveItem('locality', response.data.user.locality);
-                deviceStorage.saveItem('zip_code', response.data.user.zip_code);
-                deviceStorage.saveItem('floor', response.data.user.floor);
+                deviceStorage.saveItem('zip_code', response.data.user.zip_code+'');
+                deviceStorage.saveItem('floor', response.data.user.floor+'');
 
                 this.props.newJWT(response.data);
             })
