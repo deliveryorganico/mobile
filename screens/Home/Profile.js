@@ -3,6 +3,7 @@ import {StyleSheet,View} from "react-native";
 import {Header, List, ListItem} from 'react-native-elements'
 import {Button} from 'react-native-material-ui';
 
+
 const list = [
     {
         title: 'User',
@@ -52,7 +53,7 @@ export default class ProfileScreen extends React.Component {
 
 const styles = StyleSheet.create({
     btn : {
-        marginTop: 275,
+        marginTop: 1,
         marginLeft: 260,
         alignItems: 'center',
         flexDirection: "row",

@@ -96,7 +96,7 @@ export default class Addproduct extends React.Component {
     ;
 
     componentDidMount() {
-        Axios.get(`http://192.168.0.106:8000/rest/branch/`).then(res => {
+        Axios.get(`http://192.168.0.104:8000/rest/branch/`).then(res => {
             this.setState({branches: res.data})
         });
     }

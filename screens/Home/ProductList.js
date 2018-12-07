@@ -9,7 +9,7 @@ export default class ProductList extends React.Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://192.168.0.106:8000/rest/product/`).then(res => {
+        Axios.get(`http://192.168.0.104:8000/rest/product/`).then(res => {
             this.setState({products: res.data})
         });
     }
